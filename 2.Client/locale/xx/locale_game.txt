@@ -1,0 +1,6 @@
+MOVE_CHANNEL_99	CH0
+MOVE_CHANNEL_CANCEL	Cancel
+MOVE_CHANNEL_NOTICE	You are connected to channel %d.
+MOVE_CHANNEL_NOT_MOVE	You cannot change your channel.
+MOVE_CHANNEL_SELECT	OK
+MOVE_CHANNEL_TITLE	Channels
