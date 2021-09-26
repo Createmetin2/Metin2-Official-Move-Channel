@@ -39,6 +39,8 @@ if app.BL_MOVE_CHANNEL:
 				moveChannelDlg = MoveChannelDialog()
 				moveChannelDlg.Show()
 				self.moveChannelDlg = moveChannelDlg
+			
+			self.Close()
 
 #Find
 if __name__ == "__main__":
