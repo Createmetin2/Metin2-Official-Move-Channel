@@ -8,17 +8,16 @@ void CClientManager::QUERY_SAFEBOX_LOAD(CPeer * pkPeer, DWORD dwHandle, TSafebox
 #if defined(__BL_MOVE_CHANNEL__)
 void CClientManager::QUERY_MOVE_CHANNEL(CPeer* pkPeer, DWORD dwHandle, TMoveChannel* data)
 {
-	auto it = std::find_if(m_peerList.begin(), m_peerList.end(), [data](CPeer* p) {
-		return p->GetChannel() == data->bChannel;
+	auto it = std::find_if(m_peerList.begin(), m_peerList.end(), [pkPeer, data](CPeer* p) {
+		return (p != pkPeer && p->GetChannel() == data->bChannel && p->CheckMapIndex(data->lMapIndex));
 	});
 
 	TRespondMoveChannel t{};
 
 	if (it != m_peerList.end())
 	{
-		CPeer* p = *it;
-		if (p && p != pkPeer && p->CheckMapIndex(data->lMapIndex))
-			t = { p->GetListenPort(), p->GetAddr() };
+		t.lAddr = (*it)->GetAddr();
+		t.wPort = (*it)->GetListenPort();
 	}
 
 	pkPeer->EncodeHeader(HEADER_DG_RESPOND_MOVE_CHANNEL, dwHandle, sizeof(TRespondMoveChannel));
