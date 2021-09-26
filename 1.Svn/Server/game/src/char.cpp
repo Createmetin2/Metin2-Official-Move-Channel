@@ -55,7 +55,10 @@ EVENTFUNC(move_channel_event)
 	if (info->left_second <= 0)
 	{
 		ch->m_pkTimedEvent = nullptr;
-		ch->WarpSet(ch->GetX(), ch->GetY(), 0, info->lAddr, info->wPort);
+		if (ch->CanWarp())
+			ch->WarpSet(ch->GetX(), ch->GetY(), 0, info->lAddr, info->wPort);
+		else
+			ch->ChatPacket(CHAT_TYPE_INFO, "Switching canceled.");
 		return 0;
 	}
 	else

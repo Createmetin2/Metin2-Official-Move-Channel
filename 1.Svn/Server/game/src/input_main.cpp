@@ -20,6 +20,7 @@ void CInputMain::MoveChannel(LPCHARACTER ch, const char* c_pData)
 		|| g_bChannel == 99
 		|| ch->GetMapIndex() >= 1000
 		|| ch->GetDungeon()
+		|| ch->CanWarp() == false
 		)
 	{
 		ch->ChatPacket(CHAT_TYPE_INFO, "You cannot change channel.");
