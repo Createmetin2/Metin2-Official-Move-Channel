@@ -52,10 +52,6 @@ EVENTFUNC(move_channel_event)
 	if (ch == nullptr)
 		return 0;
 
-	const LPDESC d = ch->GetDesc();
-	if (d == nullptr)
-		return 0;
-
 	if (info->left_second <= 0)
 	{
 		ch->m_pkTimedEvent = nullptr;
